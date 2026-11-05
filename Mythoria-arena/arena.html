@@ -1,187 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mythoria | Arena</title>
-    <link rel="icon" href="/Mythoria-arena/img/mythoria_icon.png">
+    <link rel="icon" href="img/mythoria_icon.png">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
     <style>
-@font-face {
-    font-family: "Mideltank";
-    src: url("fonts/Mideltank.otf") format("opentype");
-    font-weight: normal;
-    font-style: normal;
-}
+        @font-face {
+            font-family: Stormfaze;
+            src: url("../fonts/Stormfaze.otf");
+        }
 
-.mideltank-font {
-    font-family: "Mideltank", sans-serif;
-}
+        @font-face {
+            font-family: Mideltank;
+            src: url("../fonts/Mideltank.otf");
+        }
 
-@font-face {
-    font-family: "Dynatecha";
-    src: url("fonts/Dynatecha.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-}
+        body {
+            font-family: Mideltank, sans-serif;
+            background: #17121F url("img/Arena-bg.jpg") top center / cover fixed;
+        }
 
-.dynatecha-font {
-    font-family: "Dynatecha", sans-serif;
-}
+        .storm {
+            font-family: Stormfaze, sans-serif;
+        }
 
-@font-face {
-    font-family: "Stormfaze";
-    src: url("fonts/Stormfaze.otf") format("opentype");
-    font-weight: normal;
-    font-style: normal;
-}
+        .damage-animation {
+            animation: damage 0.4s ease;
+        }
 
-.stormfaze-font {
-    font-family: "Stormfaze", sans-serif;
-}
+        .summon-animation {
+            animation: summon 0.4s ease;
+        }
 
-@font-face {
-    font-family: "Varsity";
-    src: url("fonts/Varsity.otf") format("opentype");
-    font-weight: normal;
-    font-style: normal;
-}
+        .destroy-animation {
+            animation: destroy 0.4s ease forwards;
+        }
 
-.varsity-font {
-    font-family: "Varsity", sans-serif;
-}
+        @keyframes damage {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
 
+        @keyframes summon {
+            from { opacity: 0; transform: scale(0.7); }
+            to { opacity: 1; transform: scale(1); }
+        }
 
+        @keyframes destroy {
+            to { opacity: 0; transform: scale(0.5); }
+        }
+
+        button:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
     </style>
-
 </head>
-<body>
-    <header>
-        <nav class="bg-black w-full h-17">
-            <div class="flex justify-around items-center w-full h-17">
-                <div>
-                    <a href="../index.html" class="logo">
-                        <img src="/Mythoria-arena/img/mythoria_logo.jpg" alt="logo" class="w-65">
-                    </a>
-                </div>
-                <div class="flex gap-15 text-white mideltank-font">
-                    <a href="../index.html" class="hover:text-yellow-200">Home</a>
-                    <a href="../shop.html" class="hover:text-yellow-200">Booster Shop</a>
-                    <a href="../opening.html" class="hover:text-yellow-200">Opening Chamber</a>
-                    <a href="../collection.html" class="hover:text-yellow-200">Collection</a>
-                    <a href="../deck.html" class="hover:text-yellow-200">My Deck</a>
-                    <a href="arena.html" class="hover:text-yellow-200">Arena</a>
-                </div>
-                <div>
-                    <a href="../shop.html" class="Shopping cart">
-                        <img src="/Mythoria-arena/img/shopping-cart.png" alt="shopping cart" class="w-5">
-                    </a>
-                </div>
+
+<body class="min-h-screen text-white">
+
+    <header class="border-b border-[#D4B66A] bg-[#17121F]/90 p-5">
+        <nav class="flex justify-between items-center">
+            <a href="../index.html" class="storm text-2xl text-[#D4B66A]">
+                MYTHORIA
+            </a>
+
+            <div class="flex gap-6 text-[#edd693]">
+                <a href="../index.html">Home</a>
+                <a href="../shop.html">Booster Shop</a>
+                <a href="../opening.html">Opening Chamber</a>
+                <a href="../collection.html">Collection</a>
+                <a href="../deck.html">My Deck</a>
             </div>
         </nav>
     </header>
-    <main class="bg-[url(/Mythoria-arena/img/Arena-bg.jpg)] w-full min-h-screen bg-cover bg-top bg-no-repeat flex items-center justify-center p-10">
-        <div class="w-full flex items-center justify-center gap-8">
-            <div class="w-[85%] flex flex-col items-center gap-8">
-                <div class="w-full grid grid-cols-5 gap-5 items-center">
-                    <div class="col-span-5 row-start-1 border-t-2 border-[#D4B66A]"></div>
-                    <div class="row-start-1 z-10 flex justify-center">
-                        <div class="w-28 h-40 border-2 border-[#D4B66A] rounded-lg bg-black/80"></div>
-                    </div>
-                    <div class="row-start-1 z-10 flex justify-center">
-                        <div class="w-28 h-40 border-2 border-[#D4B66A] rounded-lg bg-black/80"></div>
-                    </div>
-                    <div class="row-start-1 z-10 flex justify-center">
-                        <div class="w-28 h-40 border-2 border-[#D4B66A] rounded-lg bg-black/80"></div>
-                    </div>
-                    <div class="row-start-1 z-10 flex justify-center">
-                        <div class="w-28 h-40 border-2 border-[#D4B66A] rounded-lg bg-black/80"></div>
-                    </div>
-                    <div class="row-start-1 z-10 flex justify-center">
-                        <div class="w-28 h-40 border-2 border-[#D4B66A] rounded-lg bg-black/80"></div>
-                    </div>
-                </div>
-                <div class="w-full h-5 border border-black bg-black/70 rounded-full overflow-hidden">
-                    <div class="w-full h-full bg-red-700 rounded-full"></div>
-                </div>
-                <div class="w-full border-2 border-[#D4B66A] bg-black/50 p-6">
-                    <div class="grid grid-cols-5 gap-x-5 gap-y-6 pb-7 border-b-2 border-[#D4B66A]">
-                        <div class="h-36 border-2 border-[#D4B66A]/60 bg-black/30 rounded-md"></div>
-                        <div class="h-36 border-2 border-[#D4B66A]/60 bg-black/30 rounded-md"></div>
-                        <div class="h-36 border-2 border-[#D4B66A]/60 bg-black/30 rounded-md"></div>
-                        <div class="h-36 border-2 border-[#D4B66A]/60 bg-black/30 rounded-md"></div>
-                        <div class="h-36 border-2 border-[#D4B66A]/60 bg-black/30 rounded-md"></div>
-                        <div class="h-36 border-2 border-[#D4B66A]/60 bg-black/30 rounded-md"></div>
-                        <div class="h-36 border-2 border-[#D4B66A]/60 bg-black/30 rounded-md"></div>
-                        <div class="h-36 border-2 border-[#D4B66A]/60 bg-black/30 rounded-md"></div>
-                        <div class="h-36 border-2 border-[#D4B66A]/60 bg-black/30 rounded-md"></div>
-                        <div class="h-36 border-2 border-[#D4B66A]/60 bg-black/30 rounded-md"></div>
-                    </div>
-                    <div class="grid grid-cols-5 gap-x-5 gap-y-6 pt-7">
-                        <div class="h-36 border-2 border-[#D4B66A]/60 bg-black/30 rounded-md"></div>
-                        <div class="h-36 border-2 border-[#D4B66A]/60 bg-black/30 rounded-md"></div>
-                        <div class="h-36 border-2 border-[#D4B66A]/60 bg-black/30 rounded-md"></div>
-                        <div class="h-36 border-2 border-[#D4B66A]/60 bg-black/30 rounded-md"></div>
-                        <div class="h-36 border-2 border-[#D4B66A]/60 bg-black/30 rounded-md"></div>
-                        <div class="h-36 border-2 border-[#D4B66A]/60 bg-black/30 rounded-md"></div>
-                        <div class="h-36 border-2 border-[#D4B66A]/60 bg-black/30 rounded-md"></div>
-                        <div class="h-36 border-2 border-[#D4B66A]/60 bg-black/30 rounded-md"></div>
-                        <div class="h-36 border-2 border-[#D4B66A]/60 bg-black/30 rounded-md"></div>
-                        <div class="h-36 border-2 border-[#D4B66A]/60 bg-black/30 rounded-md"></div>
-                    </div>
-                </div>
-                <div class="w-full h-5 border border-black bg-black/70 rounded-full overflow-hidden">
-                    <div class="w-full h-full bg-red-700 rounded-full"></div>
-                </div>
-                <div class="w-full grid grid-cols-5 gap-5 items-center">
-                    <div class="col-span-5 row-start-1 border-t-2 border-[#D4B66A]"></div>
-                    <div class="row-start-1 z-10 flex justify-center">
-                        <div class="w-28 h-40 border-2 border-[#D4B66A] rounded-lg bg-black/80"></div>
-                    </div>
-                    <div class="row-start-1 z-10 flex justify-center">
-                        <div class="w-28 h-40 border-2 border-[#D4B66A] rounded-lg bg-black/80"></div>
-                    </div>
-                    <div class="row-start-1 z-10 flex justify-center">
-                        <div class="w-28 h-40 border-2 border-[#D4B66A] rounded-lg bg-black/80"></div>
-                    </div>
-                    <div class="row-start-1 z-10 flex justify-center">
-                        <div class="w-28 h-40 border-2 border-[#D4B66A] rounded-lg bg-black/80"></div>
-                    </div>
-                    <div class="row-start-1 z-10 flex justify-center">
-                        <div class="w-28 h-40 border-2 border-[#D4B66A] rounded-lg bg-black/80"></div>
-                    </div>
-                </div>
+
+    <main class="w-[95%] max-w-[1450px] mx-auto py-8">
+
+        <h1 class="storm text-5xl text-center text-[#D4B66A] mb-8">
+            THE ARENA
+        </h1>
+
+        <!-- SETUP -->
+        <section id="setup-panel"
+            class="max-w-xl mx-auto bg-[#211A29]/95 border border-[#D4B66A] rounded-lg p-8 text-center">
+
+            <h2 class="storm text-3xl text-[#edd693] mb-4">
+                Prepare for Battle
+            </h2>
+
+            <p id="setup-message" class="text-gray-300 mb-6">
+                Flip the coin to determine who starts.
+            </p>
+
+            <button id="coin-button"
+                class="storm bg-[#D4B66A] text-black px-8 py-3 rounded-md">
+                FLIP THE COIN
+            </button>
+
+            <div class="flex justify-center gap-4 mt-6">
+                <button id="light-button"
+                    class="hidden border border-yellow-300 text-yellow-200 px-6 py-3 rounded-md">
+                    LIGHT
+                </button>
+
+                <button id="dark-button"
+                    class="hidden border border-purple-400 text-purple-200 px-6 py-3 rounded-md">
+                    DARKNESS
+                </button>
             </div>
-            <div class="w-36 h-[650px] bg-gray-400/70 border-2 border-gray-300/50 rounded-md flex flex-col items-center justify-between py-8">
-                <div class="w-24 h-36 border-2 border-gray-600 bg-gray-500/50 rounded-md"></div>
-                <div class="w-24 h-36 border-2 border-gray-600 bg-gray-500/50 rounded-md"></div>
-            </div>
-        </div>
+        </section>
+
+        <!-- GAME -->
+        <section id="game-panel" class="hidden">
+
+            <!-- OPPONENT -->
+            <section class="bg-[#211A29]/90 border border-[#D4B66A]/60 rounded-lg p-5 mb-5">
+                <div class="flex justify-between items-center mb-3">
+                    <div>
+                        <h2 class="storm text-2xl text-[#edd693]">Opponent</h2>
+                        <p class="text-sm text-purple-200">
+                            Camp: <span id="opponent-camp"></span>
+                        </p>
+                    </div>
+
+                    <div class="text-right">
+                        <p class="text-red-300">
+                            HP: <span id="opponent-hp">3000</span>
+                        </p>
+                        <div class="w-48 h-3 bg-black rounded-full overflow-hidden">
+                            <div id="opponent-hp-bar"
+                                class="h-full bg-red-600 w-full"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="opponent-board"
+                    class="grid grid-cols-5 gap-3"></div>
+            </section>
+
+            <!-- BATTLE INFO -->
+            <section class="bg-black/80 border border-[#D4B66A]/60 rounded-lg p-5 mb-5 text-center">
+                <p class="text-[#edd693]">
+                    Turn <span id="turn-number">1</span>
+                    · <span id="turn-owner">You</span>
+                </p>
+
+                <p id="battle-instruction" class="text-gray-300 mt-2">
+                    Select a card or creature.
+                </p>
+
+                <p id="message-box"
+                    class="hidden text-yellow-200 mt-3"></p>
+
+                <div class="flex justify-center flex-wrap gap-3 mt-4">
+                    <button id="guard-button"
+                        class="border border-blue-300 text-blue-200 px-5 py-2 rounded-md">
+                        DEFEND
+                    </button>
+
+                    <button id="direct-attack-button"
+                        class="hidden border border-red-400 text-red-200 px-5 py-2 rounded-md">
+                        DIRECT ATTACK
+                    </button>
+
+                    <button id="end-turn-button"
+                        class="bg-[#D4B66A] text-black px-5 py-2 rounded-md">
+                        END TURN
+                    </button>
+                </div>
+            </section>
+
+            <!-- PLAYER BOARD -->
+            <section class="bg-[#211A29]/90 border border-[#D4B66A]/60 rounded-lg p-5 mb-5">
+                <div class="flex justify-between items-center mb-3">
+                    <div>
+                        <h2 class="storm text-2xl text-[#edd693]">Your Battlefield</h2>
+                        <p class="text-sm text-yellow-200">
+                            Camp: <span id="player-camp"></span>
+                        </p>
+                    </div>
+
+                    <div class="text-right">
+                        <p class="text-red-300">
+                            HP: <span id="player-hp">3000</span>
+                        </p>
+                        <div class="w-48 h-3 bg-black rounded-full overflow-hidden">
+                            <div id="player-hp-bar"
+                                class="h-full bg-red-600 w-full"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="player-board"
+                    class="grid grid-cols-5 gap-3"></div>
+            </section>
+
+            <!-- PLAYER HAND AND DECK -->
+            <section class="grid grid-cols-[1fr_180px] gap-5">
+                <div class="bg-[#211A29]/90 border border-[#D4B66A]/60 rounded-lg p-5">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="storm text-2xl text-[#edd693]">
+                            Your Hand
+                        </h2>
+                        <span class="text-sm text-gray-300">
+                            Cards: <span id="hand-count">5</span>/5
+                        </span>
+                    </div>
+
+                    <div id="player-hand"
+                        class="grid grid-cols-5 gap-3"></div>
+                </div>
+
+                <aside class="bg-[#211A29]/90 border border-[#D4B66A]/60 rounded-lg p-5 text-center">
+                    <h2 class="storm text-xl text-[#edd693] mb-4">
+                        Your Deck
+                    </h2>
+
+                    <div class="border border-[#D4B66A] bg-black/50 rounded-md p-8">
+                        <p class="storm text-3xl text-[#D4B66A]">
+                            <span id="deck-count">19</span>
+                        </p>
+                        <p class="text-sm text-gray-400">Cards left</p>
+                    </div>
+
+                    <p class="text-xs text-gray-400 mt-3">
+                        Cards are drawn automatically at the start of your turn.
+                    </p>
+                </aside>
+            </section>
+
+            <!-- COMBAT HISTORY -->
+            <section class="bg-[#211A29]/90 border border-[#D4B66A]/60 rounded-lg p-5 mt-5">
+                <h2 class="storm text-2xl text-[#edd693] mb-3">
+                    Combat History
+                </h2>
+
+                <ul id="combat-log"
+                    class="space-y-2 text-sm text-gray-300"></ul>
+            </section>
+        </section>
+
+        <!-- RESULT -->
+        <section id="result-panel"
+            class="hidden bg-[#211A29] border-2 border-[#D4B66A] rounded-lg p-8 text-center mt-8">
+
+            <h2 id="result-title"
+                class="storm text-5xl text-[#D4B66A] mb-4">
+                VICTORY!
+            </h2>
+
+            <p id="result-message" class="text-gray-300 mb-6"></p>
+
+            <button id="restart-button"
+                class="storm bg-[#D4B66A] text-black px-8 py-3 rounded-md">
+                PLAY AGAIN
+            </button>
+        </section>
+
     </main>
-    <footer class="bg-[#0A0909] w-full px-10 py-15 border-t border-[#D4B66A]/40">
-    <div class="flex flex-col md:flex-row justify-between gap-12">
-        <div class="flex flex-col gap-3">
-            <h1 class="text-3xl mideltank-font text-[#D4B66A]">MYTHORIA</h1>
-            <p class="text-[#C9C4BB]">Forge your legend. Shape your destiny.</p>
-        </div>
-        <div class="flex flex-col gap-3">
-            <h2 class="text-lg font-bold text-[#D4B66A]">EXPLORE</h2>
-            <a href="../index.html" class="text-[#C9C4BB] hover:text-[#D4B66A] transition">Home</a>
-            <a href="../shop.html" class="text-[#C9C4BB] hover:text-[#D4B66A] transition">Booster Shop</a>
-            <a href="../opening.html" class="text-[#C9C4BB] hover:text-[#D4B66A] transition">Opening Chamber</a>
-            <a href="../collection.html" class="text-[#C9C4BB] hover:text-[#D4B66A] transition">Collection</a>
-            <a href="../deck.html" class="text-[#C9C4BB] hover:text-[#D4B66A] transition">My deck</a>
-            <a href="arena.html" class="text-[#C9C4BB] hover:text-[#D4B66A] transition">Arena</a>
-        </div>
-        <div class="flex flex-col gap-3">
-            <h2 class="text-lg font-bold text-[#D4B66A]">CONTACT</h2>
-            <p class="text-[#C9C4BB]">Ready to enter the realm?</p>
-            <a href="#" class="text-[#C9C4BB] hover:text-[#D4B66A] transition">Contact Us</a>
-        </div>
-    </div>
-    <div class="mt-12 pt-5 border-t border-white/10 text-center">
-        <p class="text-sm text-[#A7A09A]">&copy; 2026 Mythoria. All rights reserved.</p>
-    </div>
-</footer>
+
+    <script type="module" src="arena.js"></script>
 </body>
 </html>
